@@ -1,20 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
+import { MongooseModule } from '@nestjs/mongoose';
 
-const dbcreds = JSON.parse(process.env.DB_CREDS);
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      imports: [],
-      useFactory: async () => ({
-        type: 'postgres',
-        host: dbcreds.host,
-        username: dbcreds.username,
-        password: dbcreds.password,
-        database: dbcreds.dbname,
-        port: dbcreds.port,
-        entities: [join(__dirname, '../db/domain/**', '*.{ts,js}')],
+    MongooseModule.forRootAsync({
+      useFactory: () => ({
+        uri: process.env.DB_URI,
       }),
     }),
   ],
