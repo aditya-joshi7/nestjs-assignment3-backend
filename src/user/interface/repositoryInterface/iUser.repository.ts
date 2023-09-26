@@ -1,4 +1,3 @@
-import { CreateUserDto } from 'src/user/dto/user.dto';
 import { User } from 'src/user/schemas/user.schema';
 
 export interface IUserRepository {
