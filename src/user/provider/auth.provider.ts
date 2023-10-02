@@ -53,6 +53,7 @@ export class AuthProvider implements IAuthProvider {
     const payload = { sub: user._id, username: user.email, roles: user.roles };
     return {
       access_token: await this._jwtService.signAsync(payload),
+      user_role: user.roles[0]
     };
   };
 }
